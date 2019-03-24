@@ -1,0 +1,11 @@
+              Possible Improvements if given more time
+
+1. Use Pagination library from Architecture Components to handle pagination
+2. Separate layouts for phones and tablets - Master Detail Flow
+3. unit tests for the Presenters and Instrumented tests for UI classes
+4. Add a searching query feature in the MainActivity
+5. Implement local database since it query a data that doesn't change frequently
+   or expand the application to repository pattern with data repository
+6. add a feature to show progress when data is loading and swipe to refresh effect
+7. adjust the query mechanism of finding the SAT results since the data is not fully related
+8. 5. Animations - Shared Element Transitions for navigating activities and other subtle animations taking advantage of API 21+
