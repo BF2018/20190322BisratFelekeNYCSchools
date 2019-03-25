@@ -1,6 +1,6 @@
-package com.example.a20190322_bisratfeleke_nycschools.screens.detail.mvp;
+package com.example.a20190322_bisratfeleke_nycschools.screens.sat.mvp;
 
-public interface DetailContract {
+public interface SatContract {
     interface View {
         void onFetchDetail(String maths, String reading, String writing,String schoolName);
 

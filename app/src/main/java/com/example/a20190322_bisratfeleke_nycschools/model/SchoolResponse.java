@@ -1,4 +1,4 @@
-package com.example.a20190322_bisratfeleke_nycschools.model.school;
+package com.example.a20190322_bisratfeleke_nycschools.model;
 
 
 import com.google.gson.annotations.Expose;

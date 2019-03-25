@@ -1,7 +1,7 @@
-package com.example.a20190322_bisratfeleke_nycschools.screens.detail.mvp;
+package com.example.a20190322_bisratfeleke_nycschools.screens.sat.mvp;
 
 
-import com.example.a20190322_bisratfeleke_nycschools.model.sat.SatResponse;
+import com.example.a20190322_bisratfeleke_nycschools.model.SatResponse;
 import com.example.a20190322_bisratfeleke_nycschools.network.WebService;
 
 import java.util.List;
@@ -13,14 +13,14 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class DetailPresenter implements DetailContract.Presenter {
+public class SatPresenter implements SatContract.Presenter {
 
     private final CompositeDisposable disposable;
-    private DetailContract.View detailContractView;
+    private SatContract.View detailContractView;
     private WebService webService;
 
     @Inject
-    public DetailPresenter(DetailContract.View detailContractView, WebService webService) {
+    public SatPresenter(SatContract.View detailContractView, WebService webService) {
         this.detailContractView = detailContractView;
         this.webService = webService;
         disposable = new CompositeDisposable();
@@ -30,10 +30,7 @@ public class DetailPresenter implements DetailContract.Presenter {
     public void getDetailData(String schoolName) {
        disposable.add(webService.getRequestedDetail()
                             .filter(satResponses -> {
-                       if(satResponses == null) {
-                           return false;
-                       }else
-                        return true;
+                                return satResponses != null;
                     }).subscribeOn(Schedulers.io())
                        .observeOn(AndroidSchedulers.mainThread())
                        .subscribe(satResponses -> handleResult(satResponses, schoolName),

@@ -1,24 +1,22 @@
-package com.example.a20190322_bisratfeleke_nycschools.screens.detail.mvp;
+package com.example.a20190322_bisratfeleke_nycschools.screens.sat.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a20190322_bisratfeleke_nycschools.R;
 import com.example.a20190322_bisratfeleke_nycschools.app.App;
-import com.example.a20190322_bisratfeleke_nycschools.screens.detail.di.DaggerDetailComponent;
-
+import com.example.a20190322_bisratfeleke_nycschools.screens.sat.di.DaggerSatComponent;
 
 import javax.inject.Inject;
 
-public class DetailActivity extends AppCompatActivity implements DetailContract.View {
+public class SatActivity extends AppCompatActivity implements SatContract.View {
 
     @Inject
-    DetailPresenter mDetailPresenter;
+    SatPresenter mSatPresenter;
 
     TextView mSchoolName, mSatReading, mSatMaths, mSatWriting;
 
@@ -26,8 +24,8 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_view);
-        DaggerDetailComponent.builder()
+        setContentView(R.layout.sat_view);
+        DaggerSatComponent.builder()
                 .appComponent(((App) getApplication()).getAppComponent())
                 .detailView(this)
                 .build()
@@ -41,7 +39,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         Intent intent = getIntent();
         String schoolName = intent.getStringExtra("school_name");
 
-        mDetailPresenter.getDetailData(schoolName);
+        mSatPresenter.getDetailData(schoolName);
 
     }
 
@@ -56,7 +54,6 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
 
     @Override
     public void onError(String error) {
-        Log.v("Detail_Error", error);
         Toast.makeText(getApplicationContext(), "Problem with loading data", Toast.LENGTH_LONG).show();
     }
 }

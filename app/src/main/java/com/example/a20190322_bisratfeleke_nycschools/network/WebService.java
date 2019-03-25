@@ -1,7 +1,8 @@
 package com.example.a20190322_bisratfeleke_nycschools.network;
 
-import com.example.a20190322_bisratfeleke_nycschools.model.sat.SatResponse;
-import com.example.a20190322_bisratfeleke_nycschools.model.school.SchoolResponse;
+import com.example.a20190322_bisratfeleke_nycschools.common.Constants;
+import com.example.a20190322_bisratfeleke_nycschools.model.SatResponse;
+import com.example.a20190322_bisratfeleke_nycschools.model.SchoolResponse;
 
 import java.util.List;
 
@@ -10,11 +11,11 @@ import retrofit2.http.GET;
 
 public interface WebService {
 
-    @GET("resource/s3k6-pzi2.json")
+    @GET(Constants.SCHOOL_END_POINT)
     Single<List<SchoolResponse>> getListOfSchools();
 
 
-    @GET("resource/f9bf-2cp4.json")
+    @GET(Constants.SAT_END_POINT)
     Single<List<SatResponse>> getRequestedDetail();
 
 

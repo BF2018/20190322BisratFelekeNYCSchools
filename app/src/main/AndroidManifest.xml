@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screens.main.mvp.MainActivity">
+        <activity android:name=".screens.school.mvp.SchoolActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.detail.mvp.DetailActivity">
+        <activity android:name=".screens.sat.mvp.SatActivity">
 
         </activity>
     </application>
