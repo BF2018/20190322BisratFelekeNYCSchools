@@ -39,7 +39,7 @@ public class SchoolActivity extends AppCompatActivity implements SchoolContract.
                 .inject(this);
 
 
-        presenter.getData(getApplicationContext());
+        presenter.getData();
         recyclerView = findViewById(R.id.recyclerView);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);

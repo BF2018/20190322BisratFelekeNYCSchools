@@ -1,7 +1,5 @@
 package com.example.a20190322_bisratfeleke_nycschools.screens.school.mvp;
 
-import android.content.Context;
-
 import com.example.a20190322_bisratfeleke_nycschools.model.SchoolResponse;
 import com.example.a20190322_bisratfeleke_nycschools.network.WebService;
 
@@ -30,7 +28,7 @@ public class SchoolPresenter implements SchoolContract.Presenter {
 
 
     @Override
-    public void getData(Context context) {
+    public void getData() {
 
         compositeDisposable.add(webService.getListOfSchools()
                 .subscribeOn(Schedulers.io())
