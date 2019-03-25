@@ -2,7 +2,7 @@
 
 1. Use Pagination library from Architecture Components to handle pagination
 2. Separate layouts for phones and tablets - Master Detail Flow
-3. unit tests for the Presenters and Instrumented tests for UI classes
+3. *More unit and instrumented tests
 4. Add a searching query feature in the SchoolActivity
 5. Implement local database since it query a data that doesn't change frequently
    or expand the application to repository pattern with data repository
