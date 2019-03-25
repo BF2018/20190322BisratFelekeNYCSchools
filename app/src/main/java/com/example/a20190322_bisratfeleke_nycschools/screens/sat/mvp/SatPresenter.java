@@ -37,30 +37,17 @@ public class SatPresenter implements SatContract.Presenter {
 
     private void handleResult(List<SatResponse> satResponse , String schoolName) {
         String bar[] = schoolName.toUpperCase().split(" ", 3);
-        StringBuilder builder = new StringBuilder();
+
 
 
         if (satResponse != null) {
             for (SatResponse response : satResponse) {
 
-                if (response.getSchoolName().contains(schoolName.toUpperCase())) {
+                if (response.getSchoolName().contains(schoolName.toUpperCase()) ||
+                        response.getSchoolName().startsWith(bar[0]) ||
+                        response.getSchoolName().startsWith(bar[1]) ||
+                        response.getSchoolName().startsWith(bar[2])) {
 
-                    detailContractView.onFetchDetail(response.getSatMathAvgScore(),
-                            response.getSatCriticalReadingAvgScore(),
-                            response.getSatWritingAvgScore(), response.getSchoolName());
-
-                } else if (response.getSchoolName().startsWith(builder.append(bar[0]).toString())){
-                    detailContractView.onFetchDetail(response.getSatMathAvgScore(),
-                            response.getSatCriticalReadingAvgScore(),
-                            response.getSatWritingAvgScore(), response.getSchoolName());
-
-
-                } else if (response.getSchoolName().startsWith(builder.append(bar[1]).toString())) {
-                    detailContractView.onFetchDetail(response.getSatMathAvgScore(),
-                            response.getSatCriticalReadingAvgScore(),
-                            response.getSatWritingAvgScore(), response.getSchoolName());
-
-                }else if (response.getSchoolName().startsWith(builder.append(bar[2]).toString())) {
                     detailContractView.onFetchDetail(response.getSatMathAvgScore(),
                             response.getSatCriticalReadingAvgScore(),
                             response.getSatWritingAvgScore(), response.getSchoolName());

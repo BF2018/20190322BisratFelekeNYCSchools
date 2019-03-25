@@ -62,14 +62,24 @@ public class SchoolPresenterTest {
         presenter = new SchoolPresenter(view, webService);
         schoolResponseList = Collections.singletonList(schoolResponse);
         inOrder = inOrder(view, webService);
-        when(webService.getListOfSchools()).thenReturn((Single.just(schoolResponseList)));
+
     }
 
 
     @Test
     public void getData_IsData_Fetched_ShowsResult() {
+        when(webService.getListOfSchools()).thenReturn((Single.just(schoolResponseList)));
         presenter.getData();
         inOrder.verify(view).onDataSuccess(schoolResponseList);
+        inOrder.verifyNoMoreInteractions();
+    }
+
+    @Test
+    public void getData_IsData_Fetched_ShowsError() {
+        String errorMessage = "this is error message";
+        when(webService.getListOfSchools()).thenReturn((Single.error(new Throwable(errorMessage))));
+        presenter.getData();
+        inOrder.verify(view).onDataFailure(errorMessage);
         inOrder.verifyNoMoreInteractions();
     }
 }
