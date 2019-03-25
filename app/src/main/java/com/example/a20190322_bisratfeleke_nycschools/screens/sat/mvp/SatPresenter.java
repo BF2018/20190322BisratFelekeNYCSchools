@@ -29,9 +29,7 @@ public class SatPresenter implements SatContract.Presenter {
     @Override
     public void getDetailData(String schoolName) {
        disposable.add(webService.getRequestedDetail()
-                            .filter(satResponses -> {
-                                return satResponses != null;
-                    }).subscribeOn(Schedulers.io())
+               .filter(satResponses -> satResponses != null).subscribeOn(Schedulers.io())
                        .observeOn(AndroidSchedulers.mainThread())
                        .subscribe(satResponses -> handleResult(satResponses, schoolName),
                                Throwable::printStackTrace));
