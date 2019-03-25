@@ -61,7 +61,7 @@ public class SchoolActivity extends AppCompatActivity implements SchoolContract.
     @Override
     public void onItemClick(SchoolResponse schoolResponse) {
         Intent intent = new Intent(SchoolActivity.this, SatActivity.class);
-        intent.putExtra("school_name", schoolResponse.getSchoolName());
+        intent.putExtra("dbn", schoolResponse.getDbn());
         startActivity(intent);
     }
 

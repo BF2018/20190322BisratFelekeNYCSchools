@@ -8,6 +8,7 @@ import java.util.List;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface WebService {
 
@@ -16,7 +17,7 @@ public interface WebService {
 
 
     @GET(Constants.SAT_END_POINT)
-    Single<List<SatResponse>> getRequestedDetail();
+    Single<List<SatResponse>> getRequestedDetail(@Query("dbn") String dbn);
 
 
 }

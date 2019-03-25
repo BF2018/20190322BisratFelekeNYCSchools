@@ -37,7 +37,7 @@ public class SatActivity extends AppCompatActivity implements SatContract.View {
         mSatWriting =findViewById(R.id.tv_writing);
 
         Intent intent = getIntent();
-        String schoolName = intent.getStringExtra("school_name");
+        String schoolName = intent.getStringExtra("dbn");
 
         mSatPresenter.getDetailData(schoolName);
 
@@ -54,6 +54,6 @@ public class SatActivity extends AppCompatActivity implements SatContract.View {
 
     @Override
     public void onError(String error) {
-        Toast.makeText(getApplicationContext(), "Problem with loading data", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
     }
 }

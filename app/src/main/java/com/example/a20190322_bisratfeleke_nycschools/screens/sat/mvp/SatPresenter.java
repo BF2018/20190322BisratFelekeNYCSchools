@@ -16,49 +16,48 @@ import io.reactivex.schedulers.Schedulers;
 public class SatPresenter implements SatContract.Presenter {
 
     private final CompositeDisposable disposable;
-    private SatContract.View detailContractView;
+    private SatContract.View satContractView;
     private WebService webService;
 
     @Inject
-    public SatPresenter(SatContract.View detailContractView, WebService webService) {
-        this.detailContractView = detailContractView;
+    public SatPresenter(SatContract.View satContractView, WebService webService) {
+        this.satContractView = satContractView;
         this.webService = webService;
         disposable = new CompositeDisposable();
     }
 
     @Override
-    public void getDetailData(String schoolName) {
-       disposable.add(webService.getRequestedDetail()
+    public void getDetailData(String dbn) {
+        disposable.add(webService.getRequestedDetail(dbn)
                .filter(satResponses -> satResponses != null).subscribeOn(Schedulers.io())
                        .observeOn(AndroidSchedulers.mainThread())
-                       .subscribe(satResponses -> handleResult(satResponses, schoolName),
+                .subscribe(satResponses -> handleResult(satResponses),
                                Throwable::printStackTrace));
     }
 
-    private void handleResult(List<SatResponse> satResponse , String schoolName) {
-        String bar[] = schoolName.toUpperCase().split(" ", 3);
+    private void handleResult(List<SatResponse> satResponse) {
 
+        if (satResponse != null && !satResponse.isEmpty()) {
+            SatResponse response = satResponse.get(0);
 
+            satContractView.onFetchDetail(response.getSatMathAvgScore(),
+                    response.getSatCriticalReadingAvgScore(),
+                    response.getSatWritingAvgScore(), response.getSchoolName());
 
-        if (satResponse != null) {
-            for (SatResponse response : satResponse) {
+        } else {
 
-                if (response.getSchoolName().contains(schoolName.toUpperCase()) ||
-                        response.getSchoolName().startsWith(bar[0]) ||
-                        response.getSchoolName().startsWith(bar[1]) ||
-                        response.getSchoolName().startsWith(bar[2])) {
-
-                    detailContractView.onFetchDetail(response.getSatMathAvgScore(),
-                            response.getSatCriticalReadingAvgScore(),
-                            response.getSatWritingAvgScore(), response.getSchoolName());
-
-                }
-            }
-
+            satContractView.onError("no data found");
 
         }
 
+
     }
+
+
+
+
+
+
 
 
     @Override
